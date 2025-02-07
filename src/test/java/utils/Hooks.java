@@ -17,9 +17,8 @@ public class Hooks {
 
     @Before
     public void setUp() {
-        String platformName = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("platformName");
-        String automationName = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("automationName");
-        driver = DriverFactory.initialize_Driver(platformName, automationName);
+        String platformName = System.getProperty("platformName");
+        driver = DriverFactory.initialize_Driver(platformName);
 
         NotificationPage notificationPage=new NotificationPage(driver);
         notificationPage.clickDontAllowButton();

@@ -1,6 +1,4 @@
 <suite name="Appium Project" parallel="tests" thread-count="2">
-    <parameter name="platformName" value="Android"/>
-    <parameter name="automationName" value="UiAutomator2"/>
     <test name="Appium">
         <classes>
             <class name="testRunners.runner"/>

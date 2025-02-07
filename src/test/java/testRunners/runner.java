@@ -16,5 +16,4 @@ import utils.DriverFactory;
 )
 
 public class runner extends AbstractTestNGCucumberTests {
-    static AppiumDriver driver = DriverFactory.getDriver();
 }

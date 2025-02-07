@@ -12,16 +12,16 @@ public class DriverFactory {
     static AppiumDriver driver;
     static DesiredCapabilities capabilities;
 
-    public static AppiumDriver initialize_Driver(String platformName,String automationName){
+    public static AppiumDriver initialize_Driver(String platformName){
         capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", platformName);
-        capabilities.setCapability("automationName", automationName);
         if(platformName.equals("Android")){
-            capabilities.setCapability("udid","emulator-5554");
+            capabilities.setCapability("deviceName","emulator-5554");
+            capabilities.setCapability("automationName", "UiAutomator2");
             capabilities.setCapability("appPackage","com.pozitron.hepsiburada");
             capabilities.setCapability("appActivity","com.hepsiburada.ui.startup.SplashActivity");
         } else if (platformName.equals("IOS")) {
-            capabilities.setCapability("udid","");
+            capabilities.setCapability("deviceName","");
             capabilities.setCapability("appPackage","");
             capabilities.setCapability("appActivity","");
         }
