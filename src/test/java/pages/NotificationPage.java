@@ -14,7 +14,7 @@ public class NotificationPage {
     final ElementHelper elementHelper;
 
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_deny_button")
-    private WebElement dontAllowButton;
+    WebElement dontAllowButton;
 
     public NotificationPage(AppiumDriver driver) {
         this.driver = driver;
