@@ -5,6 +5,7 @@
     import io.appium.java_client.pagefactory.AppiumFieldDecorator;
     import org.openqa.selenium.WebElement;
     import org.openqa.selenium.support.PageFactory;
+    import org.testng.Assert;
     import utils.ElementHelper;
 
     import java.time.Duration;
@@ -15,11 +16,13 @@
 
         @AndroidFindBy(id = "com.pozitron.hepsiburada:id/menuItemAccountFakeView")
         WebElement accountButton;
-        @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Giriş yap.\")")
+        @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Giriş yap\")")
         WebElement signUpButton;
-        @AndroidFindBy(id = "txtUserName")
+        @AndroidFindBy(accessibility = "elektronik ürünlerde fırsatları kaçırma")
+        WebElement electronicButton;
+        @AndroidFindBy(id = "//android.widget.EditText[@resource-id=\\\"txtUserName\\\"]")
         WebElement mailBox;
-        @AndroidFindBy(id = "txtPassword")
+        @AndroidFindBy(id = "//android.widget.EditText[@resource-id=\\\"txtPassword\\\"]")
         WebElement passwordBox;
         @AndroidFindBy(id = "btnLogin")
         WebElement loginButton;
@@ -27,6 +30,8 @@
         WebElement errorEmailMessage;
         @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Girdiğiniz şifre eksik veya hatalı.\n.\")")
         WebElement errorPasswordMessage;
+        @AndroidFindBy(id = "com.pozitron.hepsiburada:id/tvUserNameFull")
+        WebElement nameText;
 
         public LoginPage(AppiumDriver driver) {
             this.driver = driver;
@@ -35,23 +40,43 @@
         }
 
         public void navigateToHomePage() {
+            elementHelper.checkVisible(electronicButton);
         }
 
         public void openLoginPage() {
+            elementHelper.click(accountButton);
+            elementHelper.click(signUpButton);
         }
 
         public void enterUsername(String username) {
+            elementHelper.click(mailBox);
+            mailBox.sendKeys(username);
         }
 
         public void enterPassword(String password) {
+            elementHelper.click(passwordBox);
+            passwordBox.sendKeys(password);
         }
 
         public void clickLoginButton() {
+            elementHelper.click(loginButton);
         }
 
         public void verifyErrorMessage(String expectedErrorMessage) {
+            String actualErrorMessage = "";
+            if (expectedErrorMessage.equals("Geçerli bir e-posta adresi girmelisiniz.")) {
+                elementHelper.checkVisible(errorEmailMessage);
+                actualErrorMessage = errorEmailMessage.getText();
+            } else if (expectedErrorMessage.equals("Girdiğiniz şifre eksik veya hatalı.")) {
+                elementHelper.checkVisible(errorPasswordMessage);
+                actualErrorMessage = errorPasswordMessage.getText();
+            } else {
+                Assert.fail("Beklenen hata mesajı için element tanımlanmamış: " + expectedErrorMessage);
+            }
+            Assert.assertEquals(actualErrorMessage.trim(), expectedErrorMessage, "Hata mesajı beklenenden farklı!");
         }
 
         public void checkSuccessful() {
+          elementHelper.checkVisible(nameText);
         }
     }
