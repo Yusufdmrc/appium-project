@@ -20,11 +20,11 @@
         WebElement signUpButton;
         @AndroidFindBy(accessibility = "elektronik ürünlerde fırsatları kaçırma")
         WebElement electronicButton;
-        @AndroidFindBy(id = "//android.widget.EditText[@resource-id=\\\"txtUserName\\\"]")
+        @AndroidFindBy(xpath = "//*[contains(@resource-id,'txtUserName')]")
         WebElement mailBox;
-        @AndroidFindBy(id = "//android.widget.EditText[@resource-id=\\\"txtPassword\\\"]")
+        @AndroidFindBy(xpath = "//*[contains(@resource-id,'txtPassword')]")
         WebElement passwordBox;
-        @AndroidFindBy(id = "btnLogin")
+        @AndroidFindBy(xpath = "//*[contains(@resource-id,'btnLogin')]")
         WebElement loginButton;
         @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Geçerli bir e-posta adresi girmelisiniz.\")")
         WebElement errorEmailMessage;

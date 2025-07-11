@@ -22,6 +22,7 @@ public class DriverFactory {
             capabilities.setCapability("appActivity","com.hepsiburada.ui.startup.SplashActivity");
         } else if (platformName.equals("IOS")) {
             capabilities.setCapability("deviceName","");
+            capabilities.setCapability("automationName", "XCUITest");
             capabilities.setCapability("appPackage","");
             capabilities.setCapability("appActivity","");
         }

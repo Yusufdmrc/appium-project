@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import pages.LoginPage;
 import io.cucumber.java.en.When;
 import pages.NotificationPage;
+import utils.Constants;
 import utils.DriverFactory;
 
 public class LoginStepDefinitions {
@@ -23,11 +24,17 @@ public class LoginStepDefinitions {
 
     @And("Write {string} for username field")
     public void writeForUsernameField(String username) {
+        if(username.equals("correctEmail")){
+            username= Constants.CORRECT_EMAIL;
+        }
         loginPage.enterUsername(username);
     }
 
     @And("Write {string} for password field")
     public void writeForPasswordField(String password) {
+        if(password.equals("correctPassword")){
+            password=Constants.CORRECT_PASSWORD;
+        }
         loginPage.enterPassword(password);
     }
 
