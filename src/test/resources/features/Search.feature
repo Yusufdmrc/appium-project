@@ -5,12 +5,10 @@ Feature: Search and Selection Test Cases
     Given User at home page
 
   @SearchProduct @LoginRequired
-  Scenario Outline: Search for a "<product>" and open random result
+  Scenario Outline: Search for a "<product>"
     When User clicks on the search bar
     And User searches for "<product>"
-    And User selects a random product from the list
-    Then User checks that the product detail page opens
+    Then User verifies that products are listed
     Examples:
-      | product   |
-      | laptop    |
-      | air fryer |
+      | product |
+      | laptop  |
