@@ -9,20 +9,32 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
+import pages.LoginPage;
 import pages.NotificationPage;
 
 
 public class Hooks {
     private AppiumDriver driver;
 
-    @Before
-    public void setUp() {
+    public void initializeDriverAndHandleCookies() {
         String platformName = System.getProperty("platformName");
         driver = DriverFactory.initialize_Driver(platformName);
 
         NotificationPage notificationPage=new NotificationPage(driver);
         notificationPage.clickDontAllowButton();
 
+    }
+    @Before("(not @LoginRequired)")
+    public void setUp() {
+        initializeDriverAndHandleCookies();
+    }
+
+    @Before("@LoginRequired")
+    public void beforeSkipLogin(){
+        initializeDriverAndHandleCookies();
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(Constants.CORRECT_EMAIL,Constants.CORRECT_PASSWORD);
     }
 
     @AfterStep

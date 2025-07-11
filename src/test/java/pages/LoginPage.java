@@ -84,4 +84,13 @@
           elementHelper.click(okButton);
           elementHelper.checkVisible(nameText);
         }
+
+        public void login(String username,String password){
+            navigateToHomePage();
+            openLoginPage();
+            enterUsername(username);
+            enterPassword(password);
+            clickLoginButton();
+            checkSuccessful();
+        }
     }
