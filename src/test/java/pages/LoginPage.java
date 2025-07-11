@@ -3,6 +3,7 @@
     import io.appium.java_client.AppiumDriver;
     import io.appium.java_client.pagefactory.AndroidFindBy;
     import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+    import org.checkerframework.checker.units.qual.A;
     import org.openqa.selenium.WebElement;
     import org.openqa.selenium.support.PageFactory;
     import org.testng.Assert;
@@ -32,6 +33,9 @@
         WebElement errorPasswordMessage;
         @AndroidFindBy(id = "com.pozitron.hepsiburada:id/tvUserNameFull")
         WebElement nameText;
+
+        @AndroidFindBy(id = "android:id/button1")
+        WebElement okButton;
 
         public LoginPage(AppiumDriver driver) {
             this.driver = driver;
@@ -77,6 +81,7 @@
         }
 
         public void checkSuccessful() {
+          elementHelper.click(okButton);
           elementHelper.checkVisible(nameText);
         }
     }
